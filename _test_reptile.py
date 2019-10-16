@@ -1,13 +1,12 @@
 #!/usr/bin/python
+import random
 
 import requests
+import os
 from requests import ReadTimeout
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
 from tkinter import _flatten
-# from compiler.ast import flatten
-import threading
-import time
 
 
 def generate_request_baidu_url(file_path):
@@ -25,6 +24,7 @@ def generate_request_baidu_url(file_path):
         # it seem that baidu is ok
         url = "https://www.baidu.com/s?ie=utf-8&wd=" + keyword
         urls.append(url)
+
     # imitate as browser
     request_hearders = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36 QIHU 360SE'
@@ -41,21 +41,18 @@ def get_urls_in_baidu(urls, request_hearders):
     # generate parameters_map for multithreading
     parameters_list = []
     for i in range(len(urls)):
-        parameters_map = {'i': i, 'request_headers':request_hearders, 'urls':urls}
+        parameters_map = {'i': i, 'request_headers': request_hearders, 'urls': urls}
         parameters_list.append(parameters_map)
 
     with ThreadPoolExecutor(max_workers=20) as pool:
+        valid_urls = pool.map(get_url_in_baidu, parameters_list)
 
-            valid_urls = pool.map(get_url_in_baidu, parameters_list)
-
-            removed_invalid_url.extend(valid_urls)
-
+        removed_invalid_url.extend(valid_urls)
 
     return removed_invalid_url
 
 
 def get_url_in_baidu(parameters):
-
     i = parameters['i']
 
     request_hearders = parameters['request_headers']
@@ -71,8 +68,6 @@ def get_url_in_baidu(parameters):
             html_doc = r.content[2:]
 
             soup = BeautifulSoup(html_doc, 'html.parser')
-
-            html_content = soup.get_text
 
             b_content = soup.find('div', id='content_left')
 
@@ -106,39 +101,59 @@ def separater_direct_indirect_list(removed_invalid_url):
 def generate_html_list(url_direct_list, url_redirect_list):
     html_list = []
 
-    # opearte respectively
-    for url in url_direct_list:
-        try:
-            response = requests.get(url, headers=request_hearders, timeout=2)
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print("Direct connection is timeout!")
-            continue
-        html_list.append(response.content)
+    with ThreadPoolExecutor(max_workers=20) as pool:
+        # opearte respectively
+        html_direct_list2 = pool.map(get_direct_website_from_direct, url_direct_list)
 
-    for url in url_redirect_list:
+        html_list.extend(html_direct_list2)
+        html_list = list(filter(None, html_list))
+
+    with ThreadPoolExecutor(max_workers=20) as pool:
+        html_indirect_list2 = pool.map(get_direct_website_from_indirect_location, url_redirect_list)
+
+        html_list.extend(html_indirect_list2)
+        html_list = list(filter(None, html_list))
+
+    return html_list
+
+
+def get_direct_website_from_direct(url):
+    response_content = None
+    try:
+        response = requests.get(url, headers=request_hearders, timeout=2)
+        response_content = response.content
+    except (requests.exceptions.ConnectionError, ReadTimeout):
+        print("Direct connection is timeout!")
+
+    return response_content
+
+
+def get_direct_website_from_indirect_location(url):
+
+    html = None
+    res = None
+
+    try:
 
         # turn off redirect function
-        try:
-            res = requests.get(url=url, allow_redirects=False, headers=request_hearders, timeout=2)
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print("Redirect is failure!")
-            continue
+        res = requests.get(url=url, allow_redirects=False, headers=request_hearders, timeout=2)
+    except (requests.exceptions.ConnectionError, ReadTimeout):
+        print("Redirect is failure!")
 
-        if (res.status_code == 302):
-            direct_url = res.headers['location']
-        else:
-            continue
+    if (res is not None) and (res.status_code == 302):
 
+        direct_url = res.headers['location']
+
+        response = None
         try:
             response = requests.get(direct_url, allow_redirects=False, headers=request_hearders, timeout=2)
         except (requests.exceptions.ConnectionError, ReadTimeout):
             print("Reptile original website is failure!")
-            continue
 
-        if (res.status_code == 200):
-            html_list.append(response.content)
+        if (response is not None) and (response.status_code == 200):
+            html = response.content
 
-    return html_list
+    return html
 
 
 # main function
@@ -160,6 +175,14 @@ if __name__ == '__main__':
 
     # test
     for html in html_list:
-        print(html)
 
-    print("the length of html list:" + str(len(html_list)))
+        file_path = '/users/geekye/Desktop/htmls/'
+
+        if not os.path.exists(file_path):
+            os.mkdir(file_path)
+
+        i= random.randrange(0, 10000)
+
+        with open(file_path+str(i)+'.html', 'wb+') as html_file:
+            html_file.write(html)
+
