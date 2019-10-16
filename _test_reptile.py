@@ -3,6 +3,11 @@
 import requests
 from requests import ReadTimeout
 from bs4 import BeautifulSoup
+from concurrent.futures import ThreadPoolExecutor
+from tkinter import _flatten
+# from compiler.ast import flatten
+import threading
+import time
 
 
 def generate_request_baidu_url(file_path):
@@ -30,42 +35,67 @@ def generate_request_baidu_url(file_path):
 
 def get_urls_in_baidu(urls, request_hearders):
     removed_invalid_url = []
+
     # get information from baidu
+
+    # generate parameters_map for multithreading
+    parameters_list = []
     for i in range(len(urls)):
+        parameters_map = {'i': i, 'request_headers':request_hearders, 'urls':urls}
+        parameters_list.append(parameters_map)
 
-        try:
-            # set timeout and turnoff ssl
-            r = requests.get(urls[i], headers=request_hearders, timeout=2)
-            if r.status_code == 200:
+    with ThreadPoolExecutor(max_workers=20) as pool:
 
-                html_doc = r.content[2:]
+            valid_urls = pool.map(get_url_in_baidu, parameters_list)
 
-                soup = BeautifulSoup(html_doc, 'html.parser')
+            removed_invalid_url.extend(valid_urls)
 
-                html_content = soup.get_text
-
-                b_content = soup.find('div', id='content_left')
-
-                list1 = b_content.find_all('a', href=True)
-
-                for elem in list1:
-                    url = elem['href']
-                    if url.startswith('https') or url.startswith('http'):
-                        removed_invalid_url.append(url)
-
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print('get Baidu information timeout!')
-            continue
 
     return removed_invalid_url
 
 
+def get_url_in_baidu(parameters):
+
+    i = parameters['i']
+
+    request_hearders = parameters['request_headers']
+
+    urls = parameters['urls']
+
+    valid_urls = []
+    try:
+        # set timeout and turnoff ssl
+        r = requests.get(urls[i], headers=request_hearders, timeout=2)
+        if r.status_code == 200:
+
+            html_doc = r.content[2:]
+
+            soup = BeautifulSoup(html_doc, 'html.parser')
+
+            html_content = soup.get_text
+
+            b_content = soup.find('div', id='content_left')
+
+            list1 = b_content.find_all('a', href=True)
+
+            for elem in list1:
+                url = elem['href']
+                if url.startswith('https') or url.startswith('http'):
+                    valid_urls.append(url)
+                    # removed_invalid_url.append(url)
+
+    except (requests.exceptions.ConnectionError, ReadTimeout):
+        print('get Baidu information timeout!')
+
+    return valid_urls
+
+
 def separater_direct_indirect_list(removed_invalid_url):
     # remove same elements
-    removed_invalid_url_set = set(removed_invalid_url)
+    removed_invalid_url_set = set(_flatten(removed_invalid_url))
     url_direct_list = []
     url_redirect_list = []
-    for url in removed_invalid_url:
+    for url in removed_invalid_url_set:
         if "link?url=" in url:
             url_redirect_list.append(url)
         else:
