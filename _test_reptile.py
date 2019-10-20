@@ -1,8 +1,9 @@
 #!/usr/bin/python
-import random
 
+import random
 import requests
 import os
+import sys
 from requests import ReadTimeout
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
@@ -129,7 +130,6 @@ def get_direct_website_from_direct(url):
 
 
 def get_direct_website_from_indirect_location(url):
-
     html = None
     res = None
 
@@ -159,7 +159,10 @@ def get_direct_website_from_indirect_location(url):
 # main function
 if __name__ == '__main__':
 
-    file_path = '/users/geekye/Desktop/keywords.txt'
+    file_path = input('file_path(case sensitive):')
+    # file_path = '/users/geekye/Desktop/keywords.txt'
+
+    # file_path = sys.argv[0]
     # generate urls of request of baidu from txt file
     urls, request_hearders = generate_request_baidu_url(file_path)
 
@@ -173,16 +176,17 @@ if __name__ == '__main__':
 
     html_list = generate_html_list(url_direct_list, url_redirect_list)
 
+    dir_list = file_path.split('/')
+    file_fpath = '/'.join(dir_list[:len(dir_list) - 1]) + '/html_files'
+
     # test
-    for html in html_list:
+    for i in range(len(html_list)):
 
-        file_path = '/users/geekye/Desktop/htmls/'
+        if not os.path.exists(file_fpath):
+            os.mkdir(file_fpath)
 
-        if not os.path.exists(file_path):
-            os.mkdir(file_path)
+        with open(file_fpath + str(i) + '.html', 'wb+') as html_file:
+            html_file.write(html_list[i])
 
-        i= random.randrange(0, 10000)
 
-        with open(file_path+str(i)+'.html', 'wb+') as html_file:
-            html_file.write(html)
-
+# /users/geekye/Desktop/keywords.txt
