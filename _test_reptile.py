@@ -1,9 +1,7 @@
 #!/usr/bin/python
 
-import random
 import requests
 import os
-import sys
 from requests import ReadTimeout
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor

@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['_test_reptile.py'],
-             pathex=['/Users/geekye/PycharmProjects/reptile_baidu'],
+             pathex=['/Users/geekye/Documents/pycharm_projects/reptile_baidu'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -30,4 +30,8 @@ exe = EXE(pyz,
           upx=True,
           upx_exclude=[],
           runtime_tmpdir=None,
-          console=True )
+          console=False )
+app = BUNDLE(exe,
+             name='_test_reptile.app',
+             icon=None,
+             bundle_identifier=None)

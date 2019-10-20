@@ -1,0 +1,3 @@
+([('_test_reptile',
+   '/Users/geekye/Documents/pycharm_projects/reptile_baidu/dist/_test_reptile',
+   'EXECUTABLE')],)
