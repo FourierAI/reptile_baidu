@@ -191,7 +191,6 @@ if __name__ == '__main__':
     # remove same html by default hashcode
     html_list = list(set(html_list))
 
-    
     # test
     for i in range(len(html_list)):
 
