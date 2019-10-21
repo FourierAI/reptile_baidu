@@ -78,6 +78,13 @@ def get_url_in_baidu(parameters):
                     valid_urls.append(url)
                     # removed_invalid_url.append(url)
 
+            for elem in list1:
+                attrs = elem.attrs
+                if hasattr(attrs, 'data-url'):
+                    url = elem['data-url']
+                    if 'baike' in url:
+                        valid_urls.append(url)
+
     except (requests.exceptions.ConnectionError, ReadTimeout):
         print('get Baidu information timeout!')
 
@@ -118,11 +125,13 @@ def generate_html_list(url_direct_list, url_redirect_list):
 
 def get_direct_website_from_direct(url):
     response_content = None
-    try:
-        response = requests.get(url, headers=request_hearders, timeout=2)
-        response_content = response.content
-    except (requests.exceptions.ConnectionError, ReadTimeout):
-        print("Direct connection is timeout!")
+
+    if 'baike' in url:
+        try:
+            response = requests.get(url, headers=request_hearders, timeout=2)
+            response_content = response.content
+        except (requests.exceptions.ConnectionError, ReadTimeout):
+            print("Direct connection is timeout!")
 
     return response_content
 
@@ -142,14 +151,16 @@ def get_direct_website_from_indirect_location(url):
 
         direct_url = res.headers['location']
 
-        response = None
-        try:
-            response = requests.get(direct_url, allow_redirects=False, headers=request_hearders, timeout=2)
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print("Reptile original website is failure!")
+        if 'baike' in direct_url:
 
-        if (response is not None) and (response.status_code == 200):
-            html = response.content
+            response = None
+            try:
+                response = requests.get(direct_url, allow_redirects=False, headers=request_hearders, timeout=2)
+            except (requests.exceptions.ConnectionError, ReadTimeout):
+                print("Reptile original website is failure!")
+
+            if (response is not None) and (response.status_code == 200):
+                html = response.content
 
     return html
 
@@ -177,14 +188,19 @@ if __name__ == '__main__':
     dir_list = file_path.split('/')
     file_fpath = '/'.join(dir_list[:len(dir_list) - 1]) + '/html_files'
 
+    # remove same html by default hashcode
+    html_list = list(set(html_list))
+
+    
     # test
     for i in range(len(html_list)):
 
         if not os.path.exists(file_fpath):
             os.mkdir(file_fpath)
 
-        with open(file_fpath + str(i) + '.html', 'wb+') as html_file:
-            html_file.write(html_list[i])
+        os.chdir(file_fpath)
 
+        with open(str(i) + '.html', 'wb+') as html_file:
+            html_file.write(html_list[i])
 
 # /users/geekye/Desktop/keywords.txt
