@@ -64,7 +64,7 @@ def get_url_in_baidu(parameters):
         r = requests.get(urls[i], headers=request_hearders, timeout=2)
         if r.status_code == 200:
 
-            html_doc = r.content[2:]
+            html_doc = r.content.decode('utf-8')
 
             soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -183,12 +183,16 @@ def convert_html_txt(html_list):
         text = text.replace('\n', '')
         text_list.append(text)
 
+    return text_list
+
 
 # main function
 if __name__ == '__main__':
 
-    file_path = input('file_path(case sensitive):')
-    # file_path = '/users/geekye/Desktop/keywords.txt'
+    # files_path = input('files_path (case sensitive):')
+
+    # file_path = input('file_path(case sensitive):')
+    file_path = '/users/geekye/Desktop/keywords.txt'
 
     # file_path = sys.argv[0]
     # generate urls of request of baidu from txt file
