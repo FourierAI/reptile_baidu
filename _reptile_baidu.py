@@ -165,6 +165,25 @@ def get_direct_website_from_indirect_location(url):
     return html
 
 
+def convert_html_txt(html_list):
+
+    # remove same html by default hashcode
+    html_list = list(set(html_list))
+    text_list = []
+    for html in html_list:
+        soup = BeautifulSoup(html, 'html.parser')
+
+        text = soup.text
+
+        info = [s.extract() for s in soup('script')]
+
+        for script_content in info:
+            text = text.replace(script_content.text, '')
+
+        text = text.replace('\n', '')
+        text_list.append(text)
+
+
 # main function
 if __name__ == '__main__':
 
@@ -188,18 +207,17 @@ if __name__ == '__main__':
     dir_list = file_path.split('/')
     file_fpath = '/'.join(dir_list[:len(dir_list) - 1]) + '/html_files'
 
-    # remove same html by default hashcode
-    html_list = list(set(html_list))
+    if not os.path.exists(file_fpath):
+        os.mkdir(file_fpath)
 
-    # test
-    for i in range(len(html_list)):
+    os.chdir(file_fpath)
 
-        if not os.path.exists(file_fpath):
-            os.mkdir(file_fpath)
+    text_list = convert_html_txt(html_list)
 
-        os.chdir(file_fpath)
+    # write files
+    for i in range(len(text_list)):
 
-        with open(str(i) + '.html', 'wb+') as html_file:
-            html_file.write(html_list[i])
+        with open(str(i) + '.txt', 'w+') as html_content_file:
+            html_content_file.write(text_list[i])
 
 # /users/geekye/Desktop/keywords.txt
