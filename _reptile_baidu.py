@@ -59,6 +59,7 @@ def get_url_in_baidu(parameters):
     urls = parameters['urls']
 
     valid_urls = []
+
     try:
         # set timeout and turnoff ssl
         r = requests.get(urls[i], headers=request_hearders, timeout=2)
@@ -85,7 +86,7 @@ def get_url_in_baidu(parameters):
                     if 'baike' in url:
                         valid_urls.append(url)
 
-    except (requests.exceptions.ConnectionError, ReadTimeout):
+    except (requests.exceptions.ConnectionError, ReadTimeout, AttributeError):
         print('get Baidu information timeout!')
 
     return valid_urls
