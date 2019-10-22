@@ -166,7 +166,6 @@ def get_direct_website_from_indirect_location(url):
 
 
 def convert_html_txt(html_list):
-
     # remove same html by default hashcode
     html_list = list(set(html_list))
     text_list = []
@@ -189,39 +188,47 @@ def convert_html_txt(html_list):
 # main function
 if __name__ == '__main__':
 
-    # files_path = input('files_path (case sensitive):')
+    files_path = input('files_path (case sensitive):')
 
-    # file_path = input('file_path(case sensitive):')
-    file_path = '/users/geekye/Desktop/keywords.txt'
+    os.chdir(files_path)
 
-    # file_path = sys.argv[0]
-    # generate urls of request of baidu from txt file
-    urls, request_hearders = generate_request_baidu_url(file_path)
+    files_name = os.listdir(files_path)
 
-    removed_invalid_url = get_urls_in_baidu(urls, request_hearders)
+    for file_name in files_name:
 
-    if len(removed_invalid_url) < 1:
-        raise Exception('there is nothing in removed_invalid_url')
+        # file_path = input('file_path(case sensitive):')
+        # file_path = '/users/geekye/Desktop/keywords.txt'
 
-    # separater_direct_indirect_list
-    url_direct_list, url_redirect_list = separater_direct_indirect_list(removed_invalid_url)
+        # file_path = sys.argv[0]
+        # generate urls of request of baidu from txt file
 
-    html_list = generate_html_list(url_direct_list, url_redirect_list)
+        file_absolute_path = files_path + '/' + file_name
 
-    dir_list = file_path.split('/')
-    file_fpath = '/'.join(dir_list[:len(dir_list) - 1]) + '/html_files'
+        urls, request_hearders = generate_request_baidu_url(file_absolute_path)
 
-    if not os.path.exists(file_fpath):
-        os.mkdir(file_fpath)
+        removed_invalid_url = get_urls_in_baidu(urls, request_hearders)
 
-    os.chdir(file_fpath)
+        if len(removed_invalid_url) < 1:
+            raise Exception('there is nothing in removed_invalid_url')
 
-    text_list = convert_html_txt(html_list)
+        # separater_direct_indirect_list
+        url_direct_list, url_redirect_list = separater_direct_indirect_list(removed_invalid_url)
 
-    # write files
-    for i in range(len(text_list)):
+        html_list = generate_html_list(url_direct_list, url_redirect_list)
 
-        with open(str(i) + '.txt', 'w+') as html_content_file:
-            html_content_file.write(text_list[i])
+        file_name_separated = file_name.split('.')
+        file_fpath = files_path + "/" + file_name_separated[0]
+
+        if not os.path.exists(file_fpath):
+            os.mkdir(file_fpath)
+
+        os.chdir(file_fpath)
+
+        text_list = convert_html_txt(html_list)
+
+        # write files
+        for i in range(len(text_list)):
+            with open(str(i + 1) + '.txt', 'w+') as html_content_file:
+                html_content_file.write(text_list[i])
 
 # /users/geekye/Desktop/keywords.txt
