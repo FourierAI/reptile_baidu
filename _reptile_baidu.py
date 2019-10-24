@@ -2,6 +2,7 @@
 
 import requests
 import os
+from os.path import isfile, join
 from requests import ReadTimeout
 from bs4 import BeautifulSoup
 from concurrent.futures import ThreadPoolExecutor
@@ -83,10 +84,10 @@ def get_url_in_baidu(parameters):
                 attrs = elem.attrs
                 if hasattr(attrs, 'data-url'):
                     url = elem['data-url']
-                    if 'baike' in url:
-                        valid_urls.append(url)
+                    # if 'baike' in url:
+                    valid_urls.append(url)
 
-    except (requests.exceptions.ConnectionError, ReadTimeout, AttributeError):
+    except (requests.exceptions.ConnectionError, ReadTimeout, AttributeError, UnicodeDecodeError):
         print('get Baidu information timeout!')
 
     return valid_urls
@@ -127,12 +128,12 @@ def generate_html_list(url_direct_list, url_redirect_list):
 def get_direct_website_from_direct(url):
     response_content = None
 
-    if 'baike' in url:
-        try:
-            response = requests.get(url, headers=request_hearders, timeout=2)
-            response_content = response.content
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print("Direct connection is timeout!")
+    # if 'baike' in url:
+    try:
+        response = requests.get(url, headers=request_hearders, timeout=2)
+        response_content = response.content
+    except (requests.exceptions.ConnectionError, ReadTimeout):
+        print("Direct connection is timeout!")
 
     return response_content
 
@@ -152,16 +153,16 @@ def get_direct_website_from_indirect_location(url):
 
         direct_url = res.headers['location']
 
-        if 'baike' in direct_url:
+        # if 'baike' in direct_url:
 
-            response = None
-            try:
-                response = requests.get(direct_url, allow_redirects=False, headers=request_hearders, timeout=2)
-            except (requests.exceptions.ConnectionError, ReadTimeout):
-                print("Reptile original website is failure!")
+        response = None
+        try:
+            response = requests.get(direct_url, allow_redirects=False, headers=request_hearders, timeout=2)
+        except (requests.exceptions.ConnectionError, ReadTimeout):
+            print("Reptile original website is failure!")
 
-            if (response is not None) and (response.status_code == 200):
-                html = response.content
+        if (response is not None) and (response.status_code == 200):
+            html = response.content
 
     return html
 
@@ -175,15 +176,49 @@ def convert_html_txt(html_list):
 
         text = soup.text
 
+        # remove javascript and css and \n
         info = [s.extract() for s in soup('script')]
 
         for script_content in info:
             text = text.replace(script_content.text, '')
 
+        css_content = [s.extract() for s in soup('style')]
+
+        for css in css_content:
+            text = text.replace(css.text, '')
+
         text = text.replace('\n', '')
         text_list.append(text)
 
     return text_list
+
+
+def main_operator(file_name):
+    global request_hearders
+    # file_path = input('file_path(case sensitive):')
+    # file_path = '/users/geekye/Desktop/keywords.txt'
+    # file_path = sys.argv[0]
+    # generate urls of request of baidu from txt file
+    file_absolute_path = files_path + '/' + file_name
+    urls, request_hearders = generate_request_baidu_url(file_absolute_path)
+    removed_invalid_url = get_urls_in_baidu(urls, request_hearders)
+    if len(removed_invalid_url) < 1:
+        raise Exception('there is nothing in removed_invalid_url')
+    # separater_direct_indirect_list
+    url_direct_list, url_redirect_list = separater_direct_indirect_list(removed_invalid_url)
+    html_list = generate_html_list(url_direct_list, url_redirect_list)
+    file_name_separated = file_name.split('.')
+    file_fpath = files_path + "/" + file_name_separated[0]
+    if not os.path.exists(file_fpath):
+        os.mkdir(file_fpath)
+        os.chdir(file_fpath)
+        text_list = convert_html_txt(html_list)
+        # write files
+        for i in range(len(text_list)):
+            with open(str(i + 1) + '.txt', 'w+') as html_content_file:
+                html_content_file.write(text_list[i])
+    else:
+        return
 
 
 # main function
@@ -193,43 +228,13 @@ if __name__ == '__main__':
 
     os.chdir(files_path)
 
-    files_name = os.listdir(files_path)
+    files_name = [f for f in os.listdir(files_path) if isfile(join(files_path, f))]
 
+    # with ThreadPoolExecutor(max_workers=50) as pool:
     for file_name in files_name:
-
-        # file_path = input('file_path(case sensitive):')
-        # file_path = '/users/geekye/Desktop/keywords.txt'
-
-        # file_path = sys.argv[0]
-        # generate urls of request of baidu from txt file
-
-        file_absolute_path = files_path + '/' + file_name
-
-        urls, request_hearders = generate_request_baidu_url(file_absolute_path)
-
-        removed_invalid_url = get_urls_in_baidu(urls, request_hearders)
-
-        if len(removed_invalid_url) < 1:
-            raise Exception('there is nothing in removed_invalid_url')
-
-        # separater_direct_indirect_list
-        url_direct_list, url_redirect_list = separater_direct_indirect_list(removed_invalid_url)
-
-        html_list = generate_html_list(url_direct_list, url_redirect_list)
-
-        file_name_separated = file_name.split('.')
-        file_fpath = files_path + "/" + file_name_separated[0]
-
-        if not os.path.exists(file_fpath):
-            os.mkdir(file_fpath)
-
-        os.chdir(file_fpath)
-
-        text_list = convert_html_txt(html_list)
-
-        # write files
-        for i in range(len(text_list)):
-            with open(str(i + 1) + '.txt', 'w+') as html_content_file:
-                html_content_file.write(text_list[i])
-
-# /users/geekye/Desktop/keywords.txt
+        try:
+            main_operator(file_name)
+        # pool.submit(main_operator, file_name)
+        except Exception:
+            continue
+# /Users/geekye/Documents/Dataset/CV_set/gt
