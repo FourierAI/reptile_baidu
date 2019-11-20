@@ -12,6 +12,7 @@ import traceback
 from os.path import isfile, join
 from tkinter import _flatten
 
+import chardet
 import requests
 from bs4 import BeautifulSoup
 from requests import ReadTimeout
@@ -53,10 +54,9 @@ def list_url_in_baidu(url):
         # set timeout and turnoff ssl
         r = requests.get(url, headers=http_tools.Http_tool().rand_user_agent_of_header(),
                          timeout=2, verify=False)
-
         if r.status_code == 200:
 
-            html_doc = r.content.decode(r.encoding)
+            html_doc = r.content.decode(chardet.detect(r.content)['encoding'])
 
             soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -123,11 +123,12 @@ def list_html_direct_location(url_list):
         try:
             response = requests.get(url, headers=http_tools.Http_tool().rand_user_agent_of_header(),
                                     timeout=2)
+            # decode
             response_content = response.content
         except (requests.exceptions.ConnectionError, ReadTimeout):
             print("Direct connection is timeout!")
 
-        html_list.append(response)
+        html_list.append(response_content)
     return html_list
 
 
@@ -205,8 +206,12 @@ def main_operator(file_name):
     url_direct_list, url_redirect_list = separate_direct_indirect_list(removed_invalid_url)
     html_list = generate_html_list(url_direct_list, url_redirect_list)
 
+
+    # file_fpath = files_path + "/" + file_name_separated[0]
+
+    parent_file_path = os.path.dirname(files_path)
     file_name_separated = file_name.split('.')
-    file_fpath = files_path + "/" + file_name_separated[0]
+    file_fpath = parent_file_path + "/" + file_name_separated[0]
 
     if not os.path.exists(file_fpath):
         os.mkdir(file_fpath)
@@ -233,7 +238,7 @@ if __name__ == '__main__':
         try:
             main_operator(file_name)
         except Exception as ex:
-            print(str(ex))
+            traceback.print_exc()
             continue
 
 # /Users/geekye/Documents/Dataset/CV_set/gt

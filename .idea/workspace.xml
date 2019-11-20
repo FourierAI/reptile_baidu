@@ -2,33 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2608a212-0149-482f-bf8a-46b5f207db77" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__main__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/http_tools.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/read_write_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test/test_http.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/reptile_baidu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/reptile_baidu.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/_reptile_baidu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/Analysis-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/BUNDLE-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/EXE-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/PKG-00.pkg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/PKG-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/PYZ-00.pyz" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/PYZ-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/Tree-00.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/Tree-01.toc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/base_library.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/warn-_test_reptile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/_test_reptile/xref-_test_reptile.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/_test_reptile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/_test_reptile.app/Contents/Info.plist" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/_test_reptile.app/Contents/MacOS/_test_reptile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/_test_reptile.app/Contents/Resources/icon-windowed.icns" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/handleData.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/handleData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__main__.py" beforeDir="false" afterPath="$PROJECT_DIR$/__main__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/http_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/http_tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proxy_tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/proxy_tools.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,10 +16,11 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/reptile_baidu$handleData.coverage" NAME="handleData Coverage Results" MODIFIED="1571884402572" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/reptile_baidu$_test_reptile.coverage" NAME="_test_reptile Coverage Results" MODIFIED="1574176467311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/reptile_baidu$_test_reptile.coverage" NAME="_test_reptile Coverage Results" MODIFIED="1574242340626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/reptile_baidu$pytest_for_test_http_http_test.coverage" NAME="pytest for test_http.http_test Coverage Results" MODIFIED="1574174136050" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/numpy$_test_reptile.coverage" NAME="_test_reptile Coverage Results" MODIFIED="1571146166776" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/numpy$test.coverage" NAME="test Coverage Results" MODIFIED="1571028015533" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/reptile_baidu$test.coverage" NAME="test Coverage Results" MODIFIED="1574237412947" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/reptile_baidu$pytest_in_test_http_py.coverage" NAME="pytest in test_http.py Coverage Results" MODIFIED="1574173460397" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/numpy$test2.coverage" NAME="test2 Coverage Results" MODIFIED="1571138501157" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
@@ -61,11 +40,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__main__.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2332">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+            <state relative-caret-position="348">
+              <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
               <folding>
                 <element signature="e#182#191#0" expanded="true" />
               </folding>
@@ -73,34 +52,77 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/980037725/builtins.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="2046" column="16" selection-start-line="2046" selection-start-column="16" selection-end-line="2046" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/bs4/element.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="1004" column="8" selection-start-line="1004" selection-start-column="8" selection-end-line="1004" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/bs4/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1927">
+              <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/bs4/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="158">
+              <caret line="245" selection-start-line="245" selection-end-line="245" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/bs4/element.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="1070" selection-start-line="1070" selection-end-line="1070" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="192">
+              <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/seleniumrequests/request.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-541">
+              <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proxy_tools.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/OpenSSL/SSL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/requests/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="155">
-              <caret line="617" column="13" selection-start-line="617" selection-start-column="13" selection-end-line="617" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/requests/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="445" selection-start-line="445" selection-end-line="445" />
+            <state relative-caret-position="236">
+              <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+              <folding>
+                <element signature="e#160#171#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -108,47 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/http_tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/random.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="753" selection-start-line="753" selection-end-line="753" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_http.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="17" selection-start-line="17" selection-end-line="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/_pytest/assertion/rewrite.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="298" column="17" lean-forward="true" selection-start-line="298" selection-start-column="17" selection-end-line="298" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/handleData.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="1006">
+              <caret line="44" selection-start-line="44" selection-end-line="44" />
             </state>
           </provider>
         </entry>
@@ -183,6 +166,8 @@
       <find>get_html_redirect_location</find>
       <find>REQUEST_HEADERS</find>
       <find>get_url_in_baidu</find>
+      <find>Response</find>
+      <find>BeautifulSoup</find>
     </findStrings>
     <replaceStrings>
       <replace>REQUEST_HEADERS</replace>
@@ -209,18 +194,17 @@
         <option value="$PROJECT_DIR$/_reptile_baidu.py" />
         <option value="$PROJECT_DIR$/__init__.py" />
         <option value="$PROJECT_DIR$/file.py" />
-        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/test/test_http.py" />
+        <option value="$PROJECT_DIR$/proxy_tools.py" />
+        <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/http_tools.py" />
         <option value="$PROJECT_DIR$/__main__.py" />
-        <option value="$PROJECT_DIR$/proxy_tools.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="width" value="1680" />
-    <option name="height" value="947" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -315,7 +299,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="test2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="reptile_baidu" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -328,7 +312,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test2.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -371,18 +355,18 @@
     </configuration>
     <list>
       <item itemvalue="Python._test_reptile" />
-      <item itemvalue="Python.test2" />
       <item itemvalue="Python.handleData" />
       <item itemvalue="Python tests.pytest in test_http.py" />
       <item itemvalue="Python tests.pytest for test_http.http_test" />
+      <item itemvalue="Python.test" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python._test_reptile" />
+        <item itemvalue="Python.test" />
         <item itemvalue="Python tests.pytest for test_http.http_test" />
         <item itemvalue="Python tests.pytest in test_http.py" />
         <item itemvalue="Python.handleData" />
-        <item itemvalue="Python.test2" />
       </list>
     </recent_temporary>
   </component>
@@ -438,7 +422,10 @@
       <workItem from="1574162967283" duration="3830000" />
       <workItem from="1574167348064" duration="1477000" />
       <workItem from="1574168937376" duration="1003000" />
-      <workItem from="1574170927720" duration="5927000" />
+      <workItem from="1574170927720" duration="6595000" />
+      <workItem from="1574179998114" duration="717000" />
+      <workItem from="1574211509625" duration="2542000" />
+      <workItem from="1574232490179" duration="8608000" />
     </task>
     <servers />
   </component>
@@ -472,7 +459,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95984000" />
+    <option name="totallyTimeSpent" value="108519000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -484,15 +471,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1680" height="947" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17399268" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22710623" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32982457" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.82051283" weight="0.34152046" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8345543" visible="true" weight="0.3859649" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.82051283" visible="true" weight="0.34081632" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8345543" weight="0.3877551" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.7356532" weight="0.32865497" />
@@ -520,43 +508,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="3" />
+          <line>218</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>200</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>53</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>56</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>58</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>60</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/__main__.py</url>
-          <line>62</line>
-          <option name="timeStamp" value="10" />
+          <line>190</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -571,12 +529,52 @@
       <configuration name="PythonConfigurationType">
         <watch expression="r.encoding" language="Python" />
         <watch expression="url" language="Python" />
-        <watch expression="url" />
+        <watch expression="url" language="Python" />
+        <watch expression="os.path.isfile(path)" language="Python" />
+        <watch expression="os.path.isfile(file_fpath)" language="Python" />
+        <watch expression="file_fpath" language="Python" />
+        <watch expression="os.path.exists(file_fpath)" language="Python" />
+        <watch expression="os.path.exists(file_fpath)" language="Python" />
+        <watch expression="files_path" language="Python" />
+        <watch expression="not os.path.exists(file_fpath)" language="Python" />
+        <watch expression="not os.path.exists(file_fpath)" language="Python" />
+        <watch expression="file_fpath" language="Python" />
+        <watch expression="not os.path.exists(file_fpath)" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>not os.path.exists(file_fpath)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>file_fpath</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>os.path.exists(file_fpath)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>files_path</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>os.path.isfile(file_fpath)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>os.path.isfile(path)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>url</expression-string>
         <language-id>Python</language-id>
@@ -607,18 +605,10 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test2.ipynb" />
     <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/random.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/bs4/element.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32472">
-          <caret line="1357" column="16" selection-start-line="1357" selection-start-column="16" selection-end-line="1357" selection-end-column="16" />
         </state>
       </provider>
     </entry>
@@ -746,22 +736,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/bs4/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="90" column="23" selection-start-line="90" selection-start-column="23" selection-end-line="90" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/read_write_file.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/genericpath.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -794,27 +770,24 @@
     <entry file="file://$PROJECT_DIR$/test/.pytest_cache/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/handleData.py">
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/OpenSSL/SSL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="38064">
+          <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/requests/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9888">
+          <caret line="445" selection-start-line="445" selection-end-line="445" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/random.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
+        <state relative-caret-position="17856">
           <caret line="753" selection-start-line="753" selection-end-line="753" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/_pytest/assertion/rewrite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="298" column="17" lean-forward="true" selection-start-line="298" selection-start-column="17" selection-end-line="298" selection-end-column="17" />
         </state>
       </provider>
     </entry>
@@ -825,46 +798,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/requests/models.py">
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/_pytest/assertion/rewrite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="445" selection-start-line="445" selection-end-line="445" />
+        <state relative-caret-position="6600">
+          <caret line="298" column="17" selection-start-line="298" selection-start-column="17" selection-end-line="298" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/http_tools.py">
+    <entry file="file://$PROJECT_DIR$/test/handleData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
+        <state relative-caret-position="648">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="17" selection-start-column="17" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/requests/structures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
           <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/requests/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="617" column="13" selection-start-line="617" selection-start-column="13" selection-end-line="617" selection-end-column="13" />
+        <state relative-caret-position="143">
+          <caret line="606" column="31" selection-start-line="606" selection-start-column="31" selection-end-line="606" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/OpenSSL/SSL.py">
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/chardet/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="1613" selection-start-line="1613" selection-end-line="1613" />
+        <state relative-caret-position="24">
+          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/selenium/webdriver/common/service.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="75" selection-start-line="75" selection-end-line="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/seleniumrequests/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#93#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/seleniumrequests/request.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-541">
+          <caret line="133" column="8" selection-start-line="133" selection-start-column="8" selection-end-line="133" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proxy_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="27" column="17" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="17" />
+          <folding>
+            <element signature="e#160#171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/http_tools.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1006">
+          <caret line="44" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/bs4/element.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="1070" selection-start-line="1070" selection-end-line="1070" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/lib/python3.7/site-packages/bs4/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="158">
+          <caret line="245" selection-start-line="245" selection-end-line="245" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/bs4/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1927">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda/anaconda3/envs/py37/lib/python3.7/site-packages/bs4/element.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="1004" column="8" selection-start-line="1004" selection-start-column="8" selection-end-line="1004" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.3/python_stubs/980037725/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="2046" column="16" selection-start-line="2046" selection-start-column="16" selection-end-line="2046" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/__main__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2332">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="348">
+          <caret line="66" column="30" lean-forward="true" selection-start-line="66" selection-start-column="30" selection-end-line="66" selection-end-column="30" />
           <folding>
             <element signature="e#182#191#0" expanded="true" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/proxy_tools.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
