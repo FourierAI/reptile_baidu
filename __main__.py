@@ -56,7 +56,7 @@ def list_url_in_baidu(url):
                          timeout=2, verify=False)
         if r.status_code == 200:
 
-            html_doc = r.content.decode(chardet.detect(r.content)['encoding'])
+            html_doc = r.content.decode('utf-8')
 
             soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -191,8 +191,9 @@ def convert_html_txt(html_list):
     return text_list
 
 
-def main_operator(file_name):
+def main_operator(files_path, file_name):
     # generate urls of request of baidu from txt file
+    file_name = file_name + '.txt'
     file_absolute_path = files_path + '/' + file_name
 
     urls = generate_request_baidu_url(file_absolute_path)
@@ -205,7 +206,6 @@ def main_operator(file_name):
     # separate_direct_indirect_list
     url_direct_list, url_redirect_list = separate_direct_indirect_list(removed_invalid_url)
     html_list = generate_html_list(url_direct_list, url_redirect_list)
-
 
     # file_fpath = files_path + "/" + file_name_separated[0]
 
@@ -225,18 +225,27 @@ def main_operator(file_name):
         return
 
 
+# filter files which have been processed
+def filter_files(files_path, parent_file_path):
+    folder_name = [f for f in os.listdir(parent_file_path)]
+    files_name = [f.split('.')[0] for f in os.listdir(files_path) if isfile(join(files_path, f))]
+    return [file for file in files_name if file not in folder_name]
+
+
 # main function
 if __name__ == '__main__':
 
     files_path = input('files_path (case sensitive):')
+    parent_file_path = os.path.dirname(files_path)
 
     os.chdir(files_path)
 
-    files_name = [f for f in os.listdir(files_path) if isfile(join(files_path, f))]
+    # filter files which have been processed
+    file_list_name = filter_files(files_path, parent_file_path)
 
-    for file_name in files_name:
+    for file_name in file_list_name:
         try:
-            main_operator(file_name)
+            main_operator(files_path, file_name)
         except Exception as ex:
             traceback.print_exc()
             continue
