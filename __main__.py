@@ -7,12 +7,13 @@
 # @time: 2019-11-19 21:01
 # @desc: reptile urls from Baidu
 
+from multiprocessing import Pool
 import os
 import traceback
 from os.path import isfile, join
 from tkinter import _flatten
-
 import chardet
+
 import requests
 from bs4 import BeautifulSoup
 from requests import ReadTimeout
@@ -52,11 +53,11 @@ def list_url_in_baidu(url):
 
     try:
         # set timeout and turnoff ssl
-        r = requests.get(url, headers=http_tools.Http_tool().rand_user_agent_of_header(),
+        r = requests.get(url, headers=http_tools.HttpTool().rand_user_agent_of_header(),
                          timeout=2, verify=False)
         if r.status_code == 200:
 
-            html_doc = r.content.decode('utf-8')
+            html_doc = r.content.decode(chardet.detect(r.content)['encoding'])
 
             soup = BeautifulSoup(html_doc, 'html.parser')
 
@@ -119,14 +120,21 @@ def list_html_direct_location(url_list):
 
         response_content = None
 
-        # if 'baike' in url:
         try:
-            response = requests.get(url, headers=http_tools.Http_tool().rand_user_agent_of_header(),
+            response = requests.get(url, headers=http_tools.HttpTool().rand_user_agent_of_header(),
                                     timeout=2)
             # decode
-            response_content = response.content
+            response_content = response.content.decode(chardet.detect(response.content)['encoding'])
         except (requests.exceptions.ConnectionError, ReadTimeout):
             print("Direct connection is timeout!")
+            continue
+        except (UnicodeDecodeError):
+            print("UnicodeDecodeError")
+            continue
+        except Exception:
+            traceback.print_exc()
+            continue
+
 
         html_list.append(response_content)
     return html_list
@@ -135,33 +143,35 @@ def list_html_direct_location(url_list):
 def list_html_redirect_location(url_list):
     html_list = []
     for url in url_list:
+
         res = None
         try:
             # turn off redirect function
             res = requests.get(url=url, allow_redirects=False,
-                               headers=http_tools.Http_tool().rand_user_agent_of_header(),
+                               headers=http_tools.HttpTool().rand_user_agent_of_header(),
                                timeout=2)
-        except (requests.exceptions.ConnectionError, ReadTimeout):
-            print("Redirect is failure!")
 
-        if (res is not None) and (res.status_code == 302):
+            if (res is not None) and (res.status_code == 302):
+                direct_url = res.headers['location']
 
-            direct_url = res.headers['location']
-
-            # if 'baike' in direct_url:
-
-            response = None
-            try:
+                response = None
                 response = requests.get(direct_url, allow_redirects=False,
-                                        headers=http_tools.Http_tool().rand_user_agent_of_header(),
+                                        headers=http_tools.HttpTool().rand_user_agent_of_header(),
                                         timeout=2)
 
-            except (requests.exceptions.ConnectionError, ReadTimeout):
-                print("Reptile original website is failure!")
-
             if (response is not None) and (response.status_code == 200):
-                html = response.content
+                html = response.content.decode(chardet.detect(response.content)['encoding'])
                 html_list.append(html)
+
+        except (requests.exceptions.ConnectionError, ReadTimeout):
+            print("Reptile original website is failure!")
+            continue
+        except UnicodeDecodeError:
+            print("UnicodeDecodeError")
+            continue
+        except Exception:
+            traceback.extract_stack()
+            continue
 
     return html_list
 
@@ -243,11 +253,20 @@ if __name__ == '__main__':
     # filter files which have been processed
     file_list_name = filter_files(files_path, parent_file_path)
 
+    # generate 5 process
+
+    # multi_pool = Pool(2)
     for file_name in file_list_name:
         try:
+            print("The current processing file :", file_name)
             main_operator(files_path, file_name)
+            # multi_pool.apply_async(main_operator, args=(files_path, file_name))
+            # print('Waiting for all subprocesses done...')
         except Exception as ex:
             traceback.print_exc()
             continue
+    # multi_pool.close()
+    # multi_pool.join()
+    # print('All subprocesses done.')
 
 # /Users/geekye/Documents/Dataset/CV_set/gt

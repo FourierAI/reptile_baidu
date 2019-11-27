@@ -9,7 +9,7 @@
 import random
 
 
-class Http_tool:
+class HttpTool:
 
     def __init__(self):
         self.hearder = {'Accept-Encoding': 'gzip, deflate, br',

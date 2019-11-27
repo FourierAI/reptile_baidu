@@ -7,12 +7,16 @@
 # @time: 2019-11-19 22:16
 # @desc:
 
-
+import unittest
+import logging
 import http_tools
 
+class TestHTTPTools(unittest.TestCase):
 
-http_tools = http_tools.Http_tool()
 
-agent = http_tools.rand_user_agent()
+    def test_agent(self):
+        http_tools1 = http_tools.HttpTool()
 
-print(agent)
+        agent = http_tools1.rand_user_agent()
+        logging.info(agent)
+
