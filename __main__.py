@@ -7,17 +7,17 @@
 # @time: 2019-11-19 21:01
 # @desc: reptile urls from Baidu
 
-from multiprocessing import Pool
 import os
 import traceback
 from os.path import isfile, join
 from tkinter import _flatten
-import chardet
 
+import chardet
 import requests
 from bs4 import BeautifulSoup
 from requests import ReadTimeout
 
+import clean_data as cd
 import http_tools
 
 
@@ -42,7 +42,11 @@ def get_urls_of_baidu(urls):
     # get information from baidu
 
     for url in urls:
-        valid_urls = list_url_in_baidu(url)
+        try:
+            valid_urls = list_url_in_baidu(url)
+        except Exception:
+            traceback.print_exc()
+            continue
         removed_invalid_url.extend(valid_urls)
 
     return removed_invalid_url
@@ -51,35 +55,30 @@ def get_urls_of_baidu(urls):
 def list_url_in_baidu(url):
     valid_urls = []
 
-    try:
-        # set timeout and turnoff ssl
-        r = requests.get(url, headers=http_tools.HttpTool().rand_user_agent_of_header(),
-                         timeout=2, verify=False)
-        if r.status_code == 200:
+    # set timeout and turnoff ssl
+    r = requests.get(url, headers=http_tools.HttpTool().rand_user_agent_of_header(),
+                     timeout=2, verify=False)
+    if r.status_code == 200:
 
-            html_doc = r.content.decode(chardet.detect(r.content)['encoding'])
+        html_doc = r.content.decode(chardet.detect(r.content)['encoding'])
 
-            soup = BeautifulSoup(html_doc, 'html.parser')
+        soup = BeautifulSoup(html_doc, 'html.parser')
 
-            b_content = soup.find('div', id='content_left')
+        b_content = soup.find('div', id='content_left')
 
-            list1 = b_content.find_all('a', href=True)
+        list1 = b_content.find_all('a', href=True)
 
-            for elem in list1:
-                url = elem['href']
-                if url.startswith('https') or url.startswith('http'):
-                    valid_urls.append(url)
-                    # removed_invalid_url.append(url)
+        for elem in list1:
+            url = elem['href']
+            if url.startswith('https') or url.startswith('http'):
+                valid_urls.append(url)
+                # removed_invalid_url.append(url)
 
-            for elem in list1:
-                attrs = elem.attrs
-                if hasattr(attrs, 'data-url'):
-                    url = elem['data-url']
-                    # if 'Baike' in url:
-                    valid_urls.append(url)
-
-    except Exception as ex:
-        traceback.print_exc()
+        for elem in list1:
+            attrs = elem.attrs
+            if hasattr(attrs, 'data-url'):
+                url = elem['data-url']
+                valid_urls.append(url)
 
     return valid_urls
 
@@ -125,6 +124,8 @@ def list_html_direct_location(url_list):
                                     timeout=2)
             # decode
             response_content = response.content.decode(chardet.detect(response.content)['encoding'])
+
+
         except (requests.exceptions.ConnectionError, ReadTimeout):
             print("Direct connection is timeout!")
             continue
@@ -134,7 +135,6 @@ def list_html_direct_location(url_list):
         except Exception:
             traceback.print_exc()
             continue
-
 
         html_list.append(response_content)
     return html_list
@@ -201,6 +201,19 @@ def convert_html_txt(html_list):
     return text_list
 
 
+def clean_data(html_list):
+    html_list_cleaned = []
+
+    for html in html_list:
+        # clean program language
+        html_str = cd.clean_data(html)
+
+        if '' is not html_str:
+            html_list_cleaned.append(html_str)
+
+    return html_list_cleaned
+
+
 def main_operator(files_path, file_name):
     # generate urls of request of baidu from txt file
     file_name = file_name + '.txt'
@@ -217,7 +230,12 @@ def main_operator(files_path, file_name):
     url_direct_list, url_redirect_list = separate_direct_indirect_list(removed_invalid_url)
     html_list = generate_html_list(url_direct_list, url_redirect_list)
 
+    # get pure text
+    html_text = convert_html_txt(html_list)
     # file_fpath = files_path + "/" + file_name_separated[0]
+
+    # clean data
+    pure_text = clean_data(html_text)
 
     parent_file_path = os.path.dirname(files_path)
     file_name_separated = file_name.split('.')
@@ -226,11 +244,11 @@ def main_operator(files_path, file_name):
     if not os.path.exists(file_fpath):
         os.mkdir(file_fpath)
         os.chdir(file_fpath)
-        text_list = convert_html_txt(html_list)
+
         # write files
-        for i in range(len(text_list)):
+        for i in range(len(pure_text)):
             with open(str(i + 1) + '.txt', 'w+') as html_content_file:
-                html_content_file.write(text_list[i])
+                html_content_file.write(pure_text[i])
     else:
         return
 
