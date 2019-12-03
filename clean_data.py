@@ -22,6 +22,8 @@ def clean_data(html):
     if '查询-企查查查一下' in html or '当当' in html:
         return ''
 
+    if '页面不存在' in html:
+        return ''
 
     # clean program language
     html = html.split("window.alogObjectConfig = ")[0]
