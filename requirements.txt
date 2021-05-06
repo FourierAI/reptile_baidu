@@ -50,7 +50,7 @@ et-xmlfile==1.0.1
 fastcache==1.0.2
 filelock==3.0.10
 Flask==1.0.2
-Flask-Cors==3.0.7
+Flask-Cors==3.0.9
 FlattenList==0.1.4
 future==0.17.1
 future-stubs==0.18.0.0
